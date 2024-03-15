@@ -31,6 +31,13 @@ Initié au lycée Léonard de Vinci - 77000 Melun
 
 ### Point d'entrée
 
+### modification apporte :
+
+* Ajout de quel continent fond partie les pays
+* Ajout d'un affichage du nombre de ville a la fin 
+* Ajout des langues officiels 
+* Ajout des drapeau
+
 ![copie ecran](./images/projet-attendus.png)
 # geoworld
 # geoworld
