@@ -83,22 +83,28 @@ function getCapitale($id)
     $prep->execute();
     return $prep->fetch()-> Name;
 }
-function getNBVilles()
-{
-    global $pdo;
-    $query = 'SELECT count(*) as nb FROM City;';
-    return $pdo->query($query)->fetch() -> nb;
-}
 
 function language($id){
     
     global $pdo;
     $query = 'SELECT Language.Name as Name FROM Language, CountryLanguage, Country 
-    WHERE Language.id = CountryLanguage.idLanguage AND Country.id= CountryLanguage.idCountry AND IsOfficial="T" AND Country.id = :id;' ;
+    WHERE Language.id = CountryLanguage.idLanguage AND Country.id= CountryLanguage.idCountry 
+    AND IsOfficial="T" AND Country.id = :id;' ;
     $prep = $pdo->prepare($query);
     $prep->bindValue(':id', $id, PDO::PARAM_STR);
     $prep->execute();
-    return $prep->fetch()-> Name;
+    $result = $prep->fetch(PDO::FETCH_ASSOC);
+    if ($result){
+        return $result["Name"];
+    } else{
+        return "pas de language officielles";
+    }
 
+}
 
+function getNBVilles()
+{
+    global $pdo;
+    $query = 'SELECT count(*) as nb FROM City;';
+    return $pdo->query($query)->fetch() -> nb;
 }
